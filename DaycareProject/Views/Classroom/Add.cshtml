@@ -1,0 +1,15 @@
+﻿@model DaycareProject.ViewModels.AddClassroomViewModel
+
+<h3>Add Classroom</h3>
+
+<form asp-controller="Classroom" asp-action="Add" method="post">
+
+    <div class="form-group">
+        <label asp-for="ClassroomName"></label>
+        <input class="form-control" asp-for="ClassroomName" />
+        <span asp-validation-for="ClassroomName"></span>
+    </div>
+
+    <input type="submit" value="Add Classroom" />
+
+</form>

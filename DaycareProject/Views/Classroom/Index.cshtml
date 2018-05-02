@@ -1,0 +1,19 @@
+﻿@model List<DaycareProject.Models.Classroom>
+
+<h1>@ViewBag.Title</h1>
+
+@foreach (var classroom in Model)
+{
+    <ul>
+        <li>@classroom.ClassroomName</li>
+    </ul>
+
+}
+
+<p><a asp-controller="Classroom" asp-action="Add">Add Classroom</a></p>
+
+@if (Model.Count == 0)
+{
+    <p>No classrooms yet!</p>
+
+}
