@@ -1,0 +1,10 @@
+﻿@model DaycareProject.ViewModels.ClassListViewModel
+
+<h1>@Model.Classroom.ClassroomName</h1>
+
+<ul>
+    @foreach (var student in Model.Students)
+    {
+    <li>@student.StudentLastName, @student.StudentFirstName</li>
+    }
+</ul>

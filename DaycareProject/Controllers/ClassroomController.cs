@@ -6,6 +6,7 @@ using DaycareProject.Data;
 using DaycareProject.Models;
 using DaycareProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -52,6 +53,21 @@ namespace DaycareProject.Controllers
             return View(addClassroomViewModel);
         }
 
+        public IActionResult ClassList (int id)
+        {
+            List<Student> students = context.Students
+                .Where(c => c.ClassroomID == id)
+                .ToList();
+
+            Classroom classroom = context.Classrooms.Single(k => k.ID == id);
+
+            ClassListViewModel viewModel = new ClassListViewModel
+            {
+                Classroom = classroom,
+                Students = students
+            };
+            return View(viewModel);
+        }
 
     }
 }
