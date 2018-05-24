@@ -11,9 +11,10 @@ using System;
 namespace DaycareProject.Migrations
 {
     [DbContext(typeof(DaycareDbContext))]
-    partial class DaycareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180523181047_StudentAdd")]
+    partial class StudentAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,25 +50,13 @@ namespace DaycareProject.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ClassroomID");
-
                     b.Property<string>("StudentFirstName");
 
                     b.Property<string>("StudentLastName");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ClassroomID");
-
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("DaycareProject.Models.Student", b =>
-                {
-                    b.HasOne("DaycareProject.Models.Classroom", "Classroom")
-                        .WithMany("Students")
-                        .HasForeignKey("ClassroomID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

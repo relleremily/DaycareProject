@@ -10,7 +10,7 @@ namespace DaycareProject.Models
         public int ID { get; set; }
         public string ClassroomName { get; set; }
 
-        //public IList<Student> Students { get; set; }
+        public IList<Student> Students { get; set; }
 
         
     }

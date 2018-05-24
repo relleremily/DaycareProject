@@ -28,7 +28,7 @@ namespace DaycareProject.Controllers
 
         public IActionResult Add()
         {
-            AddStudentViewModel addStudentViewModel = new AddStudentViewModel();
+            AddStudentViewModel addStudentViewModel = new AddStudentViewModel (context.Classrooms.ToList());
             return View(addStudentViewModel);
         }
 
@@ -37,10 +37,13 @@ namespace DaycareProject.Controllers
         {
             if (ModelState.IsValid)
             {
+                Classroom newClassroom =
+                    context.Classrooms.Single(c => c.ID == addStudentViewModel.ClassroomID);
                 Student newStudent = new Student
                 {
                     StudentFirstName = addStudentViewModel.StudentFirstName,
-                    StudentLastName = addStudentViewModel.StudentLastName
+                    StudentLastName = addStudentViewModel.StudentLastName,
+                    Classroom = newClassroom
                 };
 
                 context.Students.Add(newStudent);

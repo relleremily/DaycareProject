@@ -11,7 +11,8 @@ namespace DaycareProject.Models
         public string StudentFirstName { get; set; }
         public string StudentLastName { get; set; }
 
-        //public IList<Student> Students { get; set; }
+        public Classroom Classroom { get; set; }
+        public int ClassroomID { get; set; }
 
 
     }

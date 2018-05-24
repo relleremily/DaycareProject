@@ -11,9 +11,10 @@ using System;
 namespace DaycareProject.Migrations
 {
     [DbContext(typeof(DaycareDbContext))]
-    partial class DaycareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180524132935_StudentAdd2")]
+    partial class StudentAdd2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,7 +66,7 @@ namespace DaycareProject.Migrations
             modelBuilder.Entity("DaycareProject.Models.Student", b =>
                 {
                     b.HasOne("DaycareProject.Models.Classroom", "Classroom")
-                        .WithMany("Students")
+                        .WithMany()
                         .HasForeignKey("ClassroomID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
