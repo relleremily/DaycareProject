@@ -11,9 +11,10 @@ using System;
 namespace DaycareProject.Migrations
 {
     [DbContext(typeof(DaycareDbContext))]
-    partial class DaycareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180524212117_FormMealTime")]
+    partial class FormMealTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,11 +28,7 @@ namespace DaycareProject.Migrations
 
                     b.Property<string>("ClassroomName");
 
-                    b.Property<int>("FormID");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("FormID");
 
                     b.ToTable("Classrooms");
                 });
@@ -41,23 +38,11 @@ namespace DaycareProject.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("FormName");
 
                     b.HasKey("ID");
 
                     b.ToTable("Forms");
-                });
-
-            modelBuilder.Entity("DaycareProject.Models.MealTime", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("MealTimes");
                 });
 
             modelBuilder.Entity("DaycareProject.Models.Student", b =>
@@ -76,14 +61,6 @@ namespace DaycareProject.Migrations
                     b.HasIndex("ClassroomID");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("DaycareProject.Models.Classroom", b =>
-                {
-                    b.HasOne("DaycareProject.Models.Form", "Form")
-                        .WithMany()
-                        .HasForeignKey("FormID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DaycareProject.Models.Student", b =>

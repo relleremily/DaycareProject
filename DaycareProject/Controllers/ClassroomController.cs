@@ -30,7 +30,7 @@ namespace DaycareProject.Controllers
 
         public IActionResult Add()
         {
-            AddClassroomViewModel addClassroomViewModel = new AddClassroomViewModel();
+            AddClassroomViewModel addClassroomViewModel = new AddClassroomViewModel(context.Forms.ToList());
             return View(addClassroomViewModel);
         }
 
@@ -39,9 +39,13 @@ namespace DaycareProject.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                Form newForm =
+                    context.Forms.Single(f => f.ID == addClassroomViewModel.FormID);
                 Classroom newClassroom = new Classroom
                 {
                     ClassroomName = addClassroomViewModel.ClassroomName,
+                    Form = newForm
                 };
 
                 context.Classrooms.Add(newClassroom);

@@ -11,9 +11,10 @@ using System;
 namespace DaycareProject.Migrations
 {
     [DbContext(typeof(DaycareDbContext))]
-    partial class DaycareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180524213725_FormMealTime2")]
+    partial class FormMealTime2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,11 +28,7 @@ namespace DaycareProject.Migrations
 
                     b.Property<string>("ClassroomName");
 
-                    b.Property<int>("FormID");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("FormID");
 
                     b.ToTable("Classrooms");
                 });
@@ -41,9 +38,13 @@ namespace DaycareProject.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("MealTimeID");
+
                     b.Property<string>("Name");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("MealTimeID");
 
                     b.ToTable("Forms");
                 });
@@ -57,7 +58,7 @@ namespace DaycareProject.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("MealTimes");
+                    b.ToTable("MealTime");
                 });
 
             modelBuilder.Entity("DaycareProject.Models.Student", b =>
@@ -78,11 +79,11 @@ namespace DaycareProject.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("DaycareProject.Models.Classroom", b =>
+            modelBuilder.Entity("DaycareProject.Models.Form", b =>
                 {
-                    b.HasOne("DaycareProject.Models.Form", "Form")
+                    b.HasOne("DaycareProject.Models.MealTime", "MealTime")
                         .WithMany()
-                        .HasForeignKey("FormID")
+                        .HasForeignKey("MealTimeID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

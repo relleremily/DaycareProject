@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace DaycareProject.Models
 {
-    public class Form
+    public class MealTime
     {
         public int ID { get; set; }
         public string Name { get; set; }
-
     }
 }

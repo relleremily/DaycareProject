@@ -10,6 +10,11 @@
         <span asp-validation-for="ClassroomName"></span>
     </div>
 
+    <div class="form-group">
+        <label asp-for="FormID"></label>
+        <select asp-for="FormID" asp-items="Model.Forms"></select>
+    </div>
+
     <input type="submit" value="Add Classroom" />
 
 </form>
