@@ -11,9 +11,10 @@ using System;
 namespace DaycareProject.Migrations
 {
     [DbContext(typeof(DaycareDbContext))]
-    partial class DaycareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180526202438_MealDescriptions")]
+    partial class MealDescriptions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,47 +28,9 @@ namespace DaycareProject.Migrations
 
                     b.Property<string>("ClassroomName");
 
-                    b.Property<int>("FormID");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("FormID");
 
                     b.ToTable("Classrooms");
-                });
-
-            modelBuilder.Entity("DaycareProject.Models.Form", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Forms");
-                });
-
-            modelBuilder.Entity("DaycareProject.Models.MealDescription", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Date");
-
-                    b.Property<string>("Description");
-
-                    b.Property<int>("MealTimeID");
-
-                    b.Property<int>("StudentID");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("MealTimeID");
-
-                    b.HasIndex("StudentID");
-
-                    b.ToTable("MealDescriptions");
                 });
 
             modelBuilder.Entity("DaycareProject.Models.MealTime", b =>
@@ -98,27 +61,6 @@ namespace DaycareProject.Migrations
                     b.HasIndex("ClassroomID");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("DaycareProject.Models.Classroom", b =>
-                {
-                    b.HasOne("DaycareProject.Models.Form", "Form")
-                        .WithMany()
-                        .HasForeignKey("FormID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DaycareProject.Models.MealDescription", b =>
-                {
-                    b.HasOne("DaycareProject.Models.MealTime", "MealTime")
-                        .WithMany()
-                        .HasForeignKey("MealTimeID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DaycareProject.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DaycareProject.Models.Student", b =>

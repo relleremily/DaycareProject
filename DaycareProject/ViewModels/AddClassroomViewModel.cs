@@ -15,7 +15,7 @@ namespace DaycareProject.ViewModels
         public string ClassroomName { get; set; }
 
         [Required]
-        [Display(Name = "Form")]
+        [Display(Name = "Class Form")]
         public int FormID { get; set; }
 
         public List<SelectListItem> Forms { get; set; }

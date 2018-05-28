@@ -54,5 +54,20 @@ namespace DaycareProject.Controllers
 
             return View(addStudentViewModel);
         }
+
+        public IActionResult GetDailyForm (int id)
+        {
+            Student student = context.Students.Single(s => s.ID == id);
+            Classroom classroom = context.Classrooms.Single(c => c.ID == student.ClassroomID);
+            Form form = context.Forms.Single(f => f.ID == classroom.FormID);
+
+            if (form.ID == 3)
+            {
+                return Redirect(string.Format("/Form/ToddlerForm/{0}", student.ID));
+            }
+
+
+            return View();
+        }
     }
 }

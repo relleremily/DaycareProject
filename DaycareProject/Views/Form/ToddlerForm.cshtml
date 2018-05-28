@@ -1,0 +1,21 @@
+﻿@model DaycareProject.ViewModels.ToddlerFormViewModel
+
+
+
+<h1>@Model.Student.StudentFirstName @Model.Student.StudentLastName</h1>
+<h3>@Model.Classroom.ClassroomName</h3>
+<div></div>
+
+
+<h4>Today's Meals</h4>
+
+@foreach (var mealDescription in Model.Meals)
+{
+<table class="table">
+    <tr>
+        <td>@mealDescription.MealTimeID</td>
+        <td>@mealDescription.Description</td>
+    </tr>
+</table>
+}
+<p><a asp-controller="Form" asp-action="AddMeal/@Model.Student.ID">Add Meal</a></p>

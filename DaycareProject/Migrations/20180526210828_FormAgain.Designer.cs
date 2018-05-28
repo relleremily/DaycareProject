@@ -11,9 +11,10 @@ using System;
 namespace DaycareProject.Migrations
 {
     [DbContext(typeof(DaycareDbContext))]
-    partial class DaycareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180526210828_FormAgain")]
+    partial class FormAgain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
