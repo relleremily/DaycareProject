@@ -61,7 +61,13 @@ namespace DaycareProject.Controllers
             Classroom classroom = context.Classrooms.Single(c => c.ID == student.ClassroomID);
             Form form = context.Forms.Single(f => f.ID == classroom.FormID);
 
-            if (form.ID == 3)
+
+            if (form.ID == 1)
+            {
+                return Redirect(string.Format("/Form/InfantForm/{0}", student.ID));
+            }
+
+            else if (form.ID == 2)
             {
                 return Redirect(string.Format("/Form/ToddlerForm/{0}", student.ID));
             }

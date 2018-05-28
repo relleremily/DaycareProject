@@ -1,0 +1,18 @@
+﻿@model DaycareProject.ViewModels.AddBottleFeedingViewModel
+
+<h2>Add Bottle Feeding</h2>
+
+<form asp-controller="Form" asp-action="AddBottleFeeding" method="post">
+
+    <div class="form-group">
+        <label asp-for="Ounce"></label>
+        <input class="form-control" asp-for="Ounce" />
+        <span asp-validation-for="Ounce"></span>
+    </div>
+
+    <input typeof="hidden" name="Date" value="@Model.Date" />
+
+    <input type="hidden" name="StudentID" value="@Model.StudentID" />
+
+    <input type="submit" value="Add Bottle Feeding" />
+</form>

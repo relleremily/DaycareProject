@@ -1,0 +1,21 @@
+﻿@model DaycareProject.ViewModels.InfantFormViewModel
+
+
+
+<h1>@Model.Student.StudentFirstName @Model.Student.StudentLastName</h1>
+<h3>@Model.Classroom.ClassroomName</h3>
+<h3>@DateTime.UtcNow</h3>
+<br>
+
+<h4>Today's Bottle Feedings</h4>
+
+@foreach (var bottleFeeding in Model.BottleFeedings)
+{
+    <table class="table">
+        <tr>
+            <td>@bottleFeeding.Date</td>
+            <td>@bottleFeeding.Ounce.ToString() Ounce(s)</td>
+        </tr>
+    </table>
+}
+<p><a asp-controller="Form" asp-action="AddBottleFeeding/@Model.Student.ID">Add Bottle Feeding</a></p>

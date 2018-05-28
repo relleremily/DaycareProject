@@ -67,6 +67,7 @@ namespace DaycareProject.Controllers
         {
             Student student = context.Students.Single(s => s.ID == id);
             Classroom classroom = context.Classrooms.Single(c => c.ID == student.ClassroomID);
+            //DateTime Date = DateTime.UtcNow;
 
             List<MealDescription> meals = context
                 .MealDescriptions
@@ -83,8 +84,57 @@ namespace DaycareProject.Controllers
             };
             return View(viewModel);
 
+        }
 
+        public IActionResult InfantForm(int id)
+        {
+            Student student = context.Students.Single(s => s.ID == id);
+            Classroom classroom = context.Classrooms.Single(c => c.ID == student.ClassroomID);
 
+            var nwTm = DateTime.UtcNow.ToShortTimeString();
+
+            List<BottleFeeding> bottleFeedings = context
+                .BottleFeedings
+                .Where(s => s.StudentID == id)
+                .ToList();
+            InfantFormViewModel viewModel = new InfantFormViewModel
+            {
+                Student = student,
+                Classroom = classroom,
+                BottleFeedings = bottleFeedings,
+            };
+
+            return View(viewModel);
+
+        }
+        public IActionResult AddBottleFeeding()
+        {
+            AddBottleFeedingViewModel addBottleFeedingViewModel = new AddBottleFeedingViewModel();
+            return View(addBottleFeedingViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult AddBottleFeeding(AddBottleFeedingViewModel addBottleFeedingViewModel, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                //var StudentID = addMealViewModel.StudentID; 
+                Student student = context.Students.Single(s => s.ID == id);
+
+                BottleFeeding newBottleFeeding = new BottleFeeding
+                {
+                    StudentID = student.ID,
+                    Date = addBottleFeedingViewModel.Date,
+                    Ounce = addBottleFeedingViewModel.Ounce
+                };
+
+                context.BottleFeedings.Add(newBottleFeeding);
+                context.SaveChanges();
+
+                return Redirect(string.Format("/Form/InfantForm/{0}", student.ID));
+            }
+
+            return View(addBottleFeedingViewModel);
 
         }
     }

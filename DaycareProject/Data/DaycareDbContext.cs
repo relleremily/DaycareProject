@@ -14,6 +14,7 @@ namespace DaycareProject.Data
         public DbSet<MealTime> MealTimes { get; set; }
         public DbSet<MealDescription> MealDescriptions { get; set; }
         public DbSet<Form> Forms { get; set; }
+        public DbSet<BottleFeeding> BottleFeedings { get; set; }
 
         public DaycareDbContext(DbContextOptions<DaycareDbContext> options)
             : base(options)
