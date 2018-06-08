@@ -18,6 +18,9 @@ namespace DaycareProject.Models
         public int MealTimeID { get; set; }
         public string Name { get; set; }
 
+        public FoodAmount FoodAmount { get; set; }
+        public int FoodAmountID { get; set; }
+
         public IList<MealDescription> Meals { get; set; }
     }
 }

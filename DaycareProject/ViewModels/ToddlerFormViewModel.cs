@@ -14,7 +14,10 @@ namespace DaycareProject.ViewModels
         public Student Student { get; set; }
         public Classroom Classroom { get; set; }
         public MealDescription MealDescription { get; set; }
+        public FoodAmount FoodAmount { get; set; }
+        public MealTime MealTime { get; set; }
 
+        public IList<FoodAmount> Amounts { get; set; }
         public IList<MealDescription> Meals { get; set; }
     }
 }

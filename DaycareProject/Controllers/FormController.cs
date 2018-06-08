@@ -31,7 +31,7 @@ namespace DaycareProject.Controllers
 
         public IActionResult AddMeal ()
         {
-            AddMealViewModel addMealViewModel = new AddMealViewModel(context.MealTimes.ToList());
+            AddMealViewModel addMealViewModel = new AddMealViewModel(context.MealTimes.ToList(), context.FoodAmounts.ToList());
             return View(addMealViewModel);
         }
 
@@ -43,6 +43,9 @@ namespace DaycareProject.Controllers
                 //var StudentID = addMealViewModel.StudentID; 
                 Student student = context.Students.Single(s => s.ID == id);
 
+                FoodAmount newFoodAmount =
+                    context.FoodAmounts.Single(f => f.ID == addMealViewModel.FoodAmountID);
+
                 MealTime newMealTime =
                     context.MealTimes.Single(m => m.ID == addMealViewModel.MealTimeID);
 
@@ -50,7 +53,8 @@ namespace DaycareProject.Controllers
                 {
                     StudentID = student.ID,
                     Description = addMealViewModel.Description,
-                    MealTime = newMealTime
+                    MealTime = newMealTime,
+                    FoodAmount = newFoodAmount
                 };
 
                 context.MealDescriptions.Add(newMealDescription);
@@ -69,9 +73,11 @@ namespace DaycareProject.Controllers
             Classroom classroom = context.Classrooms.Single(c => c.ID == student.ClassroomID);
             //DateTime Date = DateTime.UtcNow;
 
+            //List<FoodAmount> amounts = context.FoodAmounts.ToList();
+
             List<MealDescription> meals = context
                 .MealDescriptions
-                //.Include(meal => meal.Description)
+                //.Include(amount => amount.Description)
                 //.Include(time => time.MealTime)
                 .Where(s => s.StudentID == id)
                 .ToList();
@@ -80,7 +86,8 @@ namespace DaycareProject.Controllers
             {
                 Student = student,
                 Classroom = classroom,
-                Meals = meals
+                Meals = meals,
+                //Amounts = amounts
             };
             return View(viewModel);
 
@@ -91,9 +98,11 @@ namespace DaycareProject.Controllers
             Student student = context.Students.Single(s => s.ID == id);
             Classroom classroom = context.Classrooms.Single(c => c.ID == student.ClassroomID);
 
-            var nwTm = DateTime.UtcNow.ToShortTimeString();
+            // var nwTm = DateTime.UtcNow.ToShortTimeString();
 
-            List<BottleFeeding> bottleFeedings = context
+
+
+        List<BottleFeeding> bottleFeedings = context
                 .BottleFeedings
                 .Where(s => s.StudentID == id)
                 .ToList();

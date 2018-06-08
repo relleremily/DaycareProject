@@ -6,7 +6,6 @@
     <div class="form-group">
         <label asp-for="MealTimeID">Meal Time</label>
         <select asp-for="MealTimeID" asp-items="@Model.MealTimes"></select>
-
     </div>
 
     <div class="form-group">
@@ -14,6 +13,12 @@
         <input class="form-control" asp-for="Description" />
         <span asp-validation-for="Description"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="FoodAmountID">How much did they eat?</label>
+        <select asp-for="FoodAmountID" asp-items="@Model.FoodAmounts"></select>
+    </div>
+
+
 
     <input type="hidden" name="StudentID" value="@Model.StudentID" />
 

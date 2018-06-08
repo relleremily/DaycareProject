@@ -18,19 +18,28 @@ namespace DaycareProject.ViewModels
         //[Display(Name = "Date")]
         //public DateTime Date { get; set; }
         [Required]
+        [Display(Name = "Name")]
         public int MealTimeID { get; set; }
+
+        [Required]
+        [Display(Name = "Amount")]
+        public int FoodAmountID { get; set; }
 
         [Required]
         public int StudentID { get; set; }
 
         public MealDescription MealDescription { get; set; }
 
+        public FoodAmount FoodAmount { get; set; }
+        public List<SelectListItem> FoodAmounts { get; set; }
+
         public MealTime MealTime { get; set; }
         public List<SelectListItem> MealTimes { get; set; }
 
+        public AddMealViewModel(IEnumerable<MealTime> mealTimes, IEnumerable<FoodAmount> foodAmounts)
+        {   MealTimes = new List<SelectListItem>();
 
-        public AddMealViewModel(IEnumerable<MealTime> mealTimes)
-        {     MealTimes = new List<SelectListItem>();
+            FoodAmounts = new List<SelectListItem>();
 
             foreach (var mealTime in mealTimes)
             {
@@ -39,10 +48,22 @@ namespace DaycareProject.ViewModels
                     Value = mealTime.ID.ToString(),
                     Text = mealTime.Name
                 });
+
+            foreach (var foodAmount in foodAmounts)
+            {
+                FoodAmounts.Add(new SelectListItem
+                {
+                    Value = foodAmount.ID.ToString(),
+                    Text = foodAmount.Amount
+                });
             }
+            }
+            this.FoodAmounts = FoodAmounts;
 
             this.MealTimes = MealTimes;
         }
+
+
         public AddMealViewModel() { }
     }
 }

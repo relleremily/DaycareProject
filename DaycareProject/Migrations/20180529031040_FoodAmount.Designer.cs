@@ -11,9 +11,10 @@ using System;
 namespace DaycareProject.Migrations
 {
     [DbContext(typeof(DaycareDbContext))]
-    partial class DaycareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180529031040_FoodAmount")]
+    partial class FoodAmount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,7 +62,15 @@ namespace DaycareProject.Migrations
 
                     b.Property<string>("Amount");
 
+                    b.Property<int?>("FoodAmountID");
+
+                    b.Property<int?>("MealDescriptionID");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("FoodAmountID");
+
+                    b.HasIndex("MealDescriptionID");
 
                     b.ToTable("FoodAmounts");
                 });
@@ -154,6 +163,17 @@ namespace DaycareProject.Migrations
                         .WithMany()
                         .HasForeignKey("FormID")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DaycareProject.Models.FoodAmount", b =>
+                {
+                    b.HasOne("DaycareProject.Models.FoodAmount")
+                        .WithMany("AmountList")
+                        .HasForeignKey("FoodAmountID");
+
+                    b.HasOne("DaycareProject.Models.MealDescription")
+                        .WithMany("AmountList")
+                        .HasForeignKey("MealDescriptionID");
                 });
 
             modelBuilder.Entity("DaycareProject.Models.MealDescription", b =>
