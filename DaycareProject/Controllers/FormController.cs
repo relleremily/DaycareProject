@@ -77,8 +77,8 @@ namespace DaycareProject.Controllers
 
             List<MealDescription> meals = context
                 .MealDescriptions
-                //.Include(amount => amount.Description)
-                //.Include(time => time.MealTime)
+                .Include(amount => amount.FoodAmount)
+                .Include(time => time.MealTime)
                 .Where(s => s.StudentID == id)
                 .ToList();
 

@@ -9,14 +9,24 @@
 
 <h4>Today's Meals</h4>
 
-@foreach (var mealDescription in Model.Meals)
-{
+
+
 <table class="table">
     <tr>
-        <td>@mealDescription.MealTimeID</td>
-        <td>@mealDescription.Description</td>
-        <td>@mealDescription.FoodAmountID</td>
+        <th>Meal Time</th>
+        <th>Food Served</th>
+        <th>Amount Consumed</th>
     </tr>
+
+    @foreach (var mealDescription in Model.Meals)
+    {
+        <tr>
+            <td>@mealDescription.MealTime.Name</td>
+            <td>@mealDescription.Description</td>
+            <td>@mealDescription.FoodAmount.Amount</td>
+        </tr>
+    }
+
 </table>
-}
+
 <p><a asp-controller="Form" asp-action="AddMeal/@Model.Student.ID">Add Meal</a></p>

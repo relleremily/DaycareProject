@@ -73,5 +73,25 @@ namespace DaycareProject.Controllers
             return View(viewModel);
         }
 
+        public IActionResult Delete ()
+        {
+            ViewBag.title = "Delete Classroom";
+            ViewBag.classrooms = context.Classrooms.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int[] classroomIds)
+        {
+            foreach (int classroomId in classroomIds)
+            {
+                Classroom theClassroom = context.Classrooms.Single(c => c.ID == classroomId);
+                context.Classrooms.Remove(theClassroom);
+            }
+
+            context.SaveChanges();
+
+            return Redirect("/");
+        }
     }
 }

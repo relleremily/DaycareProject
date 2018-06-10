@@ -9,13 +9,19 @@
 
 <h4>Today's Bottle Feedings</h4>
 
-@foreach (var bottleFeeding in Model.BottleFeedings)
-{
-    <table class="table">
+<table class="table">
+    <tr>
+        <th>Time</th>
+        <th>Ounces Consumed</th>
+    </tr>
+    @foreach (var bottleFeeding in Model.BottleFeedings)
+    {
         <tr>
             <td>@bottleFeeding.Date</td>
             <td>@bottleFeeding.Ounce.ToString() Ounce(s)</td>
         </tr>
-    </table>
-}
+    }
+
+</table>
+
 <p><a asp-controller="Form" asp-action="AddBottleFeeding/@Model.Student.ID">Add Bottle Feeding</a></p>
